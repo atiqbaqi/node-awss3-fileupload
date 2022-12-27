@@ -27,8 +27,9 @@ app.post('/upload', upload.single('image'), (req, res) => {
   // Read the image file from the request
   const file = req.file;
 
+  // File name formatting to avoid duplicate file name issues
   const fileExt = path.extname(file.originalname);
-        const fileName = Date.now()+fileExt;
+  const fileName = Date.now()+fileExt;
   //fs.writeFileSync(`tmp/${file.originalname}`, file.buffer); // save the image in tmp folder
   // Configure the AWS S3 client
   const s3 = new AWS.S3({
